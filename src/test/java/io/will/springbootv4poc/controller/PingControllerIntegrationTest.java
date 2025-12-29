@@ -20,7 +20,7 @@ class PingControllerIntegrationTest {
     @Test
     void testPing_shouldReturnPong() {
         restTestClient.get()
-                .uri("http://localhost:" + port + "/ping")
+                .uri("http://localhost:" + port + "/api/v1/ping")
                 .exchange()
                 .expectStatus()
                 .isOk()

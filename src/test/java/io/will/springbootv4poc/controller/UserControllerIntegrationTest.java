@@ -26,7 +26,7 @@ class UserControllerIntegrationTest {
         User user = new User("John Doe", "john.doe@example.com");
 
         User createdUser = restTestClient.post()
-                .uri("http://localhost:" + port + "/user")
+                .uri("http://localhost:" + port + "/api/v1/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(user)
                 .exchange()
@@ -47,7 +47,7 @@ class UserControllerIntegrationTest {
         // First create a user
         User user = new User("Jane Smith", "jane.smith@example.com");
         User createdUser = restTestClient.post()
-                .uri("http://localhost:" + port + "/user")
+                .uri("http://localhost:" + port + "/api/v1/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(user)
                 .exchange()
@@ -62,7 +62,7 @@ class UserControllerIntegrationTest {
 
         // Then retrieve it
         User retrievedUser = restTestClient.get()
-                .uri("http://localhost:" + port + "/user/" + userId)
+                .uri("http://localhost:" + port + "/api/v1/user/" + userId)
                 .exchange()
                 .expectStatus()
                 .isOk()
@@ -81,7 +81,7 @@ class UserControllerIntegrationTest {
         // First create a user
         User user = new User("Bob Johnson", "bob.johnson@example.com");
         User createdUser = restTestClient.post()
-                .uri("http://localhost:" + port + "/user")
+                .uri("http://localhost:" + port + "/api/v1/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(user)
                 .exchange()
@@ -97,7 +97,7 @@ class UserControllerIntegrationTest {
         // Then update it
         User updatedUserData = new User("Bob Johnson Updated", "bob.updated@example.com");
         User updatedUser = restTestClient.put()
-                .uri("http://localhost:" + port + "/user/" + userId)
+                .uri("http://localhost:" + port + "/api/v1/user/" + userId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(updatedUserData)
                 .exchange()
@@ -118,7 +118,7 @@ class UserControllerIntegrationTest {
         // First create a user
         User user = new User("Alice Brown", "alice.brown@example.com");
         User createdUser = restTestClient.post()
-                .uri("http://localhost:" + port + "/user")
+                .uri("http://localhost:" + port + "/api/v1/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(user)
                 .exchange()
@@ -133,14 +133,14 @@ class UserControllerIntegrationTest {
 
         // Then delete it
         restTestClient.delete()
-                .uri("http://localhost:" + port + "/user/" + userId)
+                .uri("http://localhost:" + port + "/api/v1/user/" + userId)
                 .exchange()
                 .expectStatus()
                 .isNoContent();
 
         // Verify it's deleted by trying to get it
         restTestClient.get()
-                .uri("http://localhost:" + port + "/user/" + userId)
+                .uri("http://localhost:" + port + "/api/v1/user/" + userId)
                 .exchange()
                 .expectStatus()
                 .isNotFound();
